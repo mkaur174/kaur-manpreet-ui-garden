@@ -62,7 +62,10 @@ docker stop kaur_manpreet_coding_assignment12
 docker rm -f kaur_manpreet_coding_assignment12
 docker build --no-cache -t kaur_manpreet_coding_assignment12 .
 docker run -d -p 8083:80 --name kaur_manpreet_coding_assignment12 kaur_manpreet_coding_assignment12
+direct cmd:   cmd.exe /c start http://localhost:8083
 
 status: docker ps
 for all: docker ps -a
 to see files inside nginx: docker exec -it kaur_manpreet_coding_assignment12 ls -la /usr/share/nginx/html
+
+direct cmd: cmd.exe /c start https://github.com/mkaur174/kaur-manpreet-ui-garden
