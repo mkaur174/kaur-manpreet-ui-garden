@@ -44,3 +44,25 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# UI Component Library Deployment
+
+1. Create a .dockerignore file in the project root to exclude node_modules, build, and .git.
+
+2. Create a Dockerfile in the project root with multi-stage instructions for building the React app and serving it with Nginx.
+
+3. Build the production Docker image named kaur_manpreet_coding_assignment12 using docker build.
+
+4. Run the container detached on port 8083 mapped to container port 80.
+
+5. Open http://localhost:8083 in your browser to verify that all 13 UI components and media placeholders render cleanly.
+
+
+docker stop kaur_manpreet_coding_assignment12
+docker rm -f kaur_manpreet_coding_assignment12
+docker build --no-cache -t kaur_manpreet_coding_assignment12 .
+docker run -d -p 8083:80 --name kaur_manpreet_coding_assignment12 kaur_manpreet_coding_assignment12
+
+status: docker ps
+for all: docker ps -a
+to see files inside nginx: docker exec -it kaur_manpreet_coding_assignment12 ls -la /usr/share/nginx/html
