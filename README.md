@@ -1,52 +1,31 @@
-# Getting Started with Create React App
+package.json is the main setup file or the blueprint of the React project that lists our project's name, version, and metadata, and it records all of the external tools and packages that our UI library depends on.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+package-lock.json is a version lock file. It looks at the precise sub-version numbers of every single dependency that we installed in node modules. It guarantees when our Dockerfile run npm install inside the container.
 
-## Available Scripts
+The tsconfig.json file is the TypeScript configuration file. It tells the TypeScript compiler how to convert .tsx or .ts component code into standard JavaScript. It includes the rules like strict type checking or code version and path aliases.
 
-In the project directory, you can run:
+Node module folder is local library cache and it stores all of the downloaded code listed in our package.json and it is never pushed to GitHub because it is git ignored already.
 
-### `npm start`
+gitignore file is a configuration file that tells Git which files or folders to ignore so they aren't uploaded to your GitHub repository.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Total Number of Files: 5 essential root files/folders (plus component files).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. package.json (Lists project dependencies and npm scripts)
+2. package-lock.json (Locks exact package versions for consistency)
+3. tsconfig.json (Configures TypeScript compiler rules)
+4. Dockerfile (Contains the multi-stage build instructions for Node.js and Nginx)
+5. dockerignore (Excludes heavy folders like node_modules from the Docker build)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# The Component Files (Buttons, Cards, Text, etc.):
+I built modular, reusable React/TypeScript components that act as building blocks for user interfaces.
 
-### `npm run build`
+# The Subfiles (Types, Styles, and Index files):
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Each component has its own supporting subfiles (like TypeScript interface/type definitions for props, styling files, and export indices) to keep the code clean, type-safe, and organized.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-# UI Component Library Deployment
-
+STEPS FOR DOCKERFILE AND GITHUB REPOSITORY:
 1. Create a .dockerignore file in the project root to exclude node_modules, build, and .git.
 
 2. Create a Dockerfile in the project root with multi-stage instructions for building the React app and serving it with Nginx.
@@ -57,10 +36,9 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 5. Open http://localhost:8083 in your browser to verify that all 13 UI components and media placeholders render cleanly.
 
-
 docker stop kaur_manpreet_coding_assignment12
 docker rm -f kaur_manpreet_coding_assignment12
-docker build --no-cache -t kaur_manpreet_coding_assignment12 .
+docker build -t kaur_manpreet_coding_assignment12 .
 docker run -d -p 8083:80 --name kaur_manpreet_coding_assignment12 kaur_manpreet_coding_assignment12
 direct cmd:   cmd.exe /c start http://localhost:8083
 
@@ -69,3 +47,13 @@ for all: docker ps -a
 to see files inside nginx: docker exec -it kaur_manpreet_coding_assignment12 ls -la /usr/share/nginx/html
 
 direct cmd: cmd.exe /c start https://github.com/mkaur174/kaur-manpreet-ui-garden
+
+git add .
+git commit -m "Update project for demo"
+git push
+
+## fix storybook:
+find src/ -name "*.stories.tsx" -exec sed -i "s/from '@storybook\/react'/from '@storybook\/react-webpack5'/g" {} +
+
+fuser -k 6006/tcp 2>/dev/null || true  (to lock to 6006 browser)
+npm run storybook

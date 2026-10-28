@@ -49,13 +49,14 @@
     "@storybook/addon-a11y": "^10.6.3",
     "@storybook/addon-docs": "^10.6.3",
     "@storybook/addon-onboarding": "^10.6.3",
+    "@storybook/addon-webpack5-compiler-babel": "^4.0.1",
     "@storybook/preset-create-react-app": "^10.6.3",
-    "@storybook/react-webpack5": "^10.6.3",
     "@testing-library/jest-dom": "^7.0.1",
     "eslint-plugin-storybook": "^10.6.3",
     "jest-styled-components": "^7.4.0",
     "prop-types": "latest",
+    "webpack": "latest",
     "storybook": "^10.6.3",
-    "webpack": "latest"
+    "@storybook/react-webpack5": "^10.6.3"
   }
 }
