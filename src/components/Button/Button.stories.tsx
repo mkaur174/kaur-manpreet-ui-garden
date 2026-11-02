@@ -1,25 +1,18 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react-webpack5';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Button } from './Button';
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-} as ComponentMeta<typeof Button>;
-
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Click Me',
-  disabled: false,
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Disabled Button',
-  disabled: true,
+export default meta;
+type Story = StoryObj<typeof Button>;
+
+export const Default: Story = {
+  args: {
+    label: "Click Me",
+    backgroundColor: "rgba(207, 169, 48, 1)",
+    disabled: false,
+  },
 };

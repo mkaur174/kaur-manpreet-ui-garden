@@ -57,3 +57,6 @@ find src/ -name "*.stories.tsx" -exec sed -i "s/from '@storybook\/react'/from '@
 
 fuser -k 6006/tcp 2>/dev/null || true  (to lock to 6006 browser)
 npm run storybook
+npm run storybook -- --ci (to skip browser request and directly open it)
+
+cmd.exe /c start http://localhost:6006
